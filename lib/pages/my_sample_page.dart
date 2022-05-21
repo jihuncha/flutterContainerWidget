@@ -65,6 +65,10 @@ class _MyContainerState extends State<MyContainer> {
 class MyTempContainer extends StatefulWidget {
   const MyTempContainer({Key? key}) : super(key: key);
 
+  // const MyTempContainer(
+  //     {Key key, @required this.openContainer}) : super(key: key);
+  // final VoidCallback openContainer;
+
   @override
   State<MyTempContainer> createState() => _MyTempContainerState();
 }
@@ -89,18 +93,79 @@ class _MyTempContainerState extends State<MyTempContainer> {
                 fit: BoxFit.cover,
               ),
             ),
-            Container(
-                alignment: Alignment.center,
-                child: const Text(
-                  'Netmarble~',
-                  style: TextStyle(
-                      color: Colors.pink,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22.0),
-                )),
+            OpenContainer(
+              openBuilder: (context, VoidCallback _) {
+                return Container(
+                  height: 200,
+                  width: 200,
+                  color: Colors.blue,
+                );
+              },
+              closedBuilder: (_, openContainer) => MyTempContainer(),
+            )
+
+            // InkWell(
+            //   child:
+            //   Container(
+            //       alignment: Alignment.center,
+            //       child: const Text(
+            //         'Netmarble~',
+            //         style: TextStyle(
+            //             color: Colors.pink,
+            //             fontWeight: FontWeight.bold,
+            //             fontSize: 22.0),
+            //       )
+            //   ),
+            //   onTap: () {
+            //   },
+            // )
+
+
+
+
+            // Container(
+            //     alignment: Alignment.center,
+            //     child: const Text(
+            //       'Netmarble~',
+            //       style: TextStyle(
+            //           color: Colors.pink,
+            //           fontWeight: FontWeight.bold,
+            //           fontSize: 22.0),
+            //     )
+            // ),
           ],
         ),
       ),
     );
   }
 }
+
+// OpenContainer(
+//     transitionType: ContainerTransitionType.fade,
+//     openBuilder: (context, VoidCallback _) {
+//       return Container(
+//         height: 200,
+//         width: 200,
+//         color: Colors.blue,
+//       );
+//     },
+//     closedElevation: 0,
+//     closedShape: RoundedRectangleBorder(),
+//     closedColor: Colors.blue,
+//     closedBuilder: (context, callback) {
+//       return Container(
+//         alignment: Alignment.center,
+//         width: 250,
+//         child: Padding(
+//           padding: const EdgeInsets.all(8),
+//           child: Text(
+//             "Sign Up",
+//             style: TextStyle(
+//                 color: Colors.white,
+//                 fontWeight: FontWeight.bold,
+//                 fontSize: 20),
+//           ),
+//         ),
+//       );
+//     }
+// );

@@ -5,6 +5,7 @@ import 'package:flutter_marble_study/pages/animation_sample_page.dart';
 // import Animation Package
 import 'package:animations/animations.dart';
 import 'package:flutter_marble_study/pages/my_sample_page.dart';
+import 'package:flutter_marble_study/pages/sample_github_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -125,6 +126,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => MySampleDemo()));
+                },
+              ),
+              Container(
+                height: 50,
+              ),
+              ElevatedButton(
+                child: Text("에라이~"),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TempGithubPage()));
                 },
               ),
             ],
