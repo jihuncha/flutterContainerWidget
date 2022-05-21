@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             tappable: false,
             closedElevation: 0,
             closedShape: RoundedRectangleBorder(),
+            middleColor: Colors.grey,
             closedColor: Colors.black,
             closedBuilder: (_, openContainer) => SearchBar(
               searchString: searchString,
