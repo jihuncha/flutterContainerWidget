@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_marble_study/pages/main_page.dart';
+import 'package:flutter_marble_study/pages/animation_sample_page.dart';
+
+
+// import Animation Package
+import 'package:animations/animations.dart';
+import 'package:flutter_marble_study/pages/my_sample_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +28,8 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
+
+
   final String title;
 
   @override
@@ -30,6 +37,35 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  void testFunc() {
+    OpenContainer(
+      transitionType: ContainerTransitionType.fade,
+      openBuilder: (context, VoidCallback _) {
+        return _testPage();
+      },
+      closedElevation: 0,
+      closedShape: RoundedRectangleBorder(),
+      closedColor: Colors.blue,
+      closedBuilder: (context, callback) {
+        return Container(
+          alignment: Alignment.center,
+          width: 250,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Text(
+              "Sign Up",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),
+            ),
+          ),
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MyTestWidget()));
+                          builder: (context) => AnimationsDemo()));
                 },
               ),
               Container(
@@ -66,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Container(
                           alignment: Alignment.center,
-                          child: Text(
+                          child: const Text(
                             'Netmarble~',
                             style: TextStyle(color: Colors.pink,
                                 fontWeight: FontWeight.bold,
@@ -76,15 +112,70 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 onPressed: () {
+                  testFunc();
+                },
+              ),
+              Container(
+                height: 50,
+              ),
+              ElevatedButton(
+                child: Text("상한가 가즈아~"),
+                onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MyTestWidget()));
+                          builder: (context) => MySampleDemo()));
                 },
               ),
-
             ],
           )),
+    );
+  }
+}
+
+class _testPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Demo details page'),
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Title',
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline5
+                      ?.copyWith(
+                    color: Colors.black54,
+                    fontSize: 30.0,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Demo details page',
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .bodyText2
+                      ?.copyWith(
+                    color: Colors.black54,
+                    height: 1.5,
+                    fontSize: 16.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
